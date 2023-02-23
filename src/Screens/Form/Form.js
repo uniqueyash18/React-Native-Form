@@ -1,6 +1,6 @@
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { styles } from './style';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import TextInputcomp from '../../Component/TextInputcomp';
 import Buttoncomp from '../../Component/Buttoncomp';
 export default function Form() {
@@ -8,8 +8,8 @@ export default function Form() {
     const [age, setAge] = useState('')
     const [rollno, setRollno] = useState('')
     const [department, setDepartment] = useState('')
-    const [email, setEmail] = useState()
-    const [mobile, setMobile] = useState()
+    const [email, setEmail] = useState('')
+    const [mobile, setMobile] = useState('')
     function validate() {
       const  emailRegex=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (!name.trim()) {
@@ -22,6 +22,8 @@ export default function Form() {
             alert("Please Enter Your department")
         }else if (!email.trim()) {
             alert("Please Enter Your Email")
+        }else if (!email.match(emailRegex)) {
+            alert("Please Enter Your Email properly")
         }else if (!mobile.trim()) {
             alert("Please Enter Your Mobile number")
         } else {

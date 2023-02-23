@@ -1,7 +1,7 @@
 import { TextInput, StyleSheet } from "react-native";
-export default ({ place, style, value, keyboard,onchange,maxln }) => {
+export default ({ place, style, value, keyboard,onchange,maxln,texttype }) => {
     return (
-        <TextInput keyboardType={keyboard} placeholder={place} style={{ ...styles.tinput, ...style }} value={value} onChangeText={onchange} maxLength={maxln}></TextInput>
+        <TextInput keyboardType={keyboard} placeholder={place} style={{ ...styles.tinput, ...style }} value={value} secureTextEntry={texttype} onChangeText={onchange} maxLength={maxln}></TextInput>
     )
 }
 const styles = StyleSheet.create({

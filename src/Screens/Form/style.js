@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     flex:1,
     margin: 16,
     backgroundColor:"#ECE2BD",
+    marginTop:40
       
   },
   heading: {
