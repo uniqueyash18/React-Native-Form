@@ -1,9 +1,9 @@
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView,Button } from 'react-native';
 import { styles } from './style';
 import {useState } from 'react';
 import TextInputcomp from '../../Component/TextInputcomp';
 import Buttoncomp from '../../Component/Buttoncomp';
-export default function Form() {
+export default function Form({navigation}) {
     const [name, setName] = useState('')
     const [age, setAge] = useState('')
     const [rollno, setRollno] = useState('')
@@ -29,6 +29,7 @@ export default function Form() {
         } else {
             alert("Yeah! "+name.toUpperCase() + " You have succesfully submitted the form")
             clearState()
+            navigation.navigate('Test1')
         }
     }
     const clearState = () => {
@@ -46,6 +47,7 @@ export default function Form() {
                 <TextInputcomp place="Enter Your Email" style={{}} value={email} keyboard="email-address" onchange={(val) => setEmail(val)} />
                 <TextInputcomp place="Enter Your Mobile Number" style={{}} value={mobile} keyboard="numeric" onchange={(val) => {if(val.match( "^[0-9]*$")){setMobile(val)}}} maxln={10} />
                 <Buttoncomp validate={validate} />
+                <Button onPress={() => navigation.goBack()} title="   Back   " color={"red"}/>
             </View>
         </ScrollView>
     );

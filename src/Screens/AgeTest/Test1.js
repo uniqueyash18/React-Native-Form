@@ -1,9 +1,8 @@
-import { Text, View, Image, SafeAreaView, TouchableOpacity, Button } from 'react-native';
-import { styles } from './style';
+import { Text, View, Image, SafeAreaView, TouchableOpacity, StyleSheet,Button } from 'react-native';
 import { useState } from 'react';
 
 
-export default function App() {
+export const Test1=({navigation})=> {
        const [age, newage] = useState('1')
        function checkAge() {
               if (age < 18) {
@@ -26,6 +25,7 @@ export default function App() {
                             style={styles.btn} onPress={checkAge}>
                             <Text style={styles.btntext}>SAVE</Text>
                      </TouchableOpacity>
+                     <Button onPress={() => navigation.goBack()} title="   Back   " color={"red"}/>
               </SafeAreaView>
        )
 }
