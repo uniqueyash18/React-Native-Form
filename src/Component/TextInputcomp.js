@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
     tinput: {
         borderRadius: 8,
         borderWidth: 2,
-        width: 250,
+        width: 270,
         marginTop: 16,
-        height: 40,
+        height: 60,
         backgroundColor: "white",
         padding: 10,
         // textAlign:'center',

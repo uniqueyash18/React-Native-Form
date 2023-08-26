@@ -1,56 +1,103 @@
-import { Text, View, ScrollView,Button } from 'react-native';
-import { styles } from './style';
-import {useState } from 'react';
-import TextInputcomp from '../../Component/TextInputcomp';
-import Buttoncomp from '../../Component/Buttoncomp';
-export default function Form({navigation}) {
-    const [name, setName] = useState('')
-    const [age, setAge] = useState('')
-    const [rollno, setRollno] = useState('')
-    const [department, setDepartment] = useState('')
-    const [email, setEmail] = useState('')
-    const [mobile, setMobile] = useState('')
-    function validate() {
-      const  emailRegex=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if (!name.trim()) {
-            alert("Please Enter Your name")
-        } else if (!age.trim()) {
-            alert("Please Enter Your age")
-        } else if (!rollno.trim()) {
-            alert("Please Enter Your roll no")
-        } else if (!department.trim()) {
-            alert("Please Enter Your department")
-        }else if (!email.trim()) {
-            alert("Please Enter Your Email")
-        }else if (!email.match(emailRegex)) {
-            alert("Please Enter Your Email properly")
-        }else if (!mobile.trim()) {
-            alert("Please Enter Your Mobile number")
-        } else {
-            alert("Yeah! "+name.toUpperCase() + " You have succesfully submitted the form")
-            clearState()
-            navigation.navigate('Test1')
-        }
-    }
-    const clearState = () => {
-        setName(''), setAge(''), setRollno(''), setDepartment(''), setEmail(''), setMobile('')
-    }
+import { Text, View, ScrollView, Button, TouchableOpacity } from "react-native";
+import { styles } from "./style";
+import { useState } from "react";
+import TextInputcomp from "../../Component/TextInputcomp";
+import Buttoncomp from "../../Component/Buttoncomp";
+import StringConstants from "../../Constants/StringConstants";
+import { sendaction } from "../../redux/actions/sendaction";
 
-    return (
-        <ScrollView style={styles.maindiv}>
-            <Text style={styles.heading}>REGISTRATION FORM</Text>
-            <View style={styles.btnarea}>
-                <TextInputcomp place="Enter Your Name" style={{}} value={name} keyboard="string" onchange={(val) => {if(val.match( "^[A-Za-z_-]*$")){setName(val)}}} maxln={20}  />
-                <TextInputcomp place="Enter Your age" style={{}} value={age} keyboard="numeric" onchange={(val) => {if(val.match( "^[0-9]*$")){setAge(val)}}} maxln={2}/>
-                <TextInputcomp place="Enter Your Roll No" style={{}} value={rollno} keyboard="numeric" onchange={(val) => {if(val.match( "^[0-9]*$")){setRollno(val)}}} maxln={12} />
-                <TextInputcomp place="Enter Your Department" style={{}} value={department} keyboard="string" onchange={(val) => setDepartment(val)}/>
-                <TextInputcomp place="Enter Your Email" style={{}} value={email} keyboard="email-address" onchange={(val) => setEmail(val)} />
-                <TextInputcomp place="Enter Your Mobile Number" style={{}} value={mobile} keyboard="numeric" onchange={(val) => {if(val.match( "^[0-9]*$")){setMobile(val)}}} maxln={10} />
-                <Buttoncomp validate={validate} />
-                <Button onPress={() => navigation.goBack()} title="   Back   " color={"red"}/>
-            </View>
-        </ScrollView>
-    );
+export default function Form({ navigation }) {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  function validate() {
+    const udata = {
+      Name: name,
+      Age: age,
+      Email: email,
+      Mobile: mobile,
+    };
+    const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!name.trim()) {
+      alert("Please Enter Your name");
+    } else if (!age.trim()) {
+      alert("Please Enter Your age");
+    } else if (!email.trim()) {
+      alert("Please Enter Your Email");
+    } else if (!email.match(emailRegex)) {
+      alert("Please Enter Your Email properly");
+    } else if (!mobile.trim()) {
+      alert("Please Enter Your Mobile number");
+    } else {
+     sendaction(udata)
+      navigation.navigate("Home");
+    }
+  }
 
+  return (
+    <ScrollView style={styles.maindiv}>
+      <Text style={styles.heading}>{StringConstants.REGISTRATION_FORM}</Text>
+      <View style={styles.logintxt}>
+        <Text style={{ color: "red" }}>
+          {StringConstants.Already_have_an_account}
+        </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Text>{StringConstants.Login}</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.btnarea}>
+        <TextInputcomp
+          place={StringConstants.Enter_Your_Name}
+          style={{}}
+          value={name}
+          keyboard="string"
+          onchange={(val) => {
+            if (val.match("^[A-Za-z_-]*$")) {
+              setName(val);
+            }
+          }}
+          maxln={20}
+        />
+        <TextInputcomp
+          place={StringConstants.Enter_Your_age}
+          style={{}}
+          value={age}
+          keyboard="numeric"
+          onchange={(val) => {
+            if (val.match("^[0-9]*$")) {
+              setAge(val);
+            }
+          }}
+          maxln={2}
+        />
+        <TextInputcomp
+          place={StringConstants.Enter_Your_Email}
+          style={{}}
+          value={email}
+          keyboard="email-address"
+          onchange={(val) => setEmail(val)}
+        />
+        <TextInputcomp
+          place={StringConstants.Enter_Your_Mobile_Number}
+          style={{}}
+          value={mobile}
+          keyboard="numeric"
+          onchange={(val) => {
+            if (val.match("^[0-9]*$")) {
+              setMobile(val);
+            }
+          }}
+          maxln={10}
+        />
+        <Buttoncomp validate={validate} />
+        <Button
+          onPress={() => navigation.goBack()}
+          title={StringConstants.Back}
+          color={"red"}
+        />
+      </View>
+    </ScrollView>
+  );
 }
-

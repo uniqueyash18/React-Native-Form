@@ -1,19 +1,16 @@
 import { StyleSheet } from "react-native";
-
+import { moderateVerticalScale } from "react-native-size-matters";
 const styles = StyleSheet.create({
   maindiv: {
     flex:1,
-    margin: 16,
     backgroundColor:"#ECE2BD",
-    marginTop:40
-      
   },
   heading: {
     alignSelf: "center",
     fontSize:30,
     fontWeight:"bold",
-    marginBottom:24,
-    marginTop:50,
+    marginBottom:moderateVerticalScale(24),
+    marginTop:moderateVerticalScale(50),
     textDecorationLine:"underline",   
     color:'black' 
   },
@@ -21,8 +18,6 @@ const styles = StyleSheet.create({
     alignItems:"center",
     flex:1
   },
+  logintxt:{flexDirection:"row", justifyContent:"center"}
 })
-
-
-
 export { styles };

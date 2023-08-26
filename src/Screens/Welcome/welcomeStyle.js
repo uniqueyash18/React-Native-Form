@@ -1,24 +1,38 @@
 import { StyleSheet } from "react-native"
+import { moderateVerticalScale,moderateScale } from "react-native-size-matters";
 export const styles= StyleSheet.create({
-main:{
+main:{paddingHorizontal:20,
     flex:1,
 justifyContent:'center',
-backgroundColor: "black",
-
-},
-text:{
-    color:"#8BC541",
-    fontSize:32,
-    textAlign:"center"
+backgroundColor: "white",
+// borderRadius:'10'
 },
 upper:{
-    flex:0.8
+    flex:0.9,},
+lowertext:{
+    textAlign:"center",
+    fontSize:16,
+    marginTop:moderateVerticalScale(30)
 },
-lower:{
+img:{ 
+width:moderateScale(200),
+height:moderateVerticalScale(100),
+alignSelf:"center"
+},
+images:{marginTop:moderateVerticalScale(30),
     flexDirection:"row",
-    justifyContent:"space-evenly"
+    justifyContent:"space-between"
 },
-img:{height:200, marginVertical:20},
-
-
+banner:{
+    width:moderateScale(200),
+    height:moderateVerticalScale(120),
+    resizeMode:'contain'
+},
+heading:{
+    marginBottom:moderateVerticalScale(20),
+    fontSize:30,
+    textAlign:"center",
+    color:"#8BC540",
+    fontWeight:"bold"
+}
 })
