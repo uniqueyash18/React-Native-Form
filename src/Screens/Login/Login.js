@@ -14,7 +14,7 @@ export const Login=({navigation},{value})=>{
         else if(!pass.trim()){
             alert(StringConstants.Please_enter_your_password)
         }else{
-            navigation.navigate('Test1')
+            navigation.navigate('Form')
         }
     }
     return(

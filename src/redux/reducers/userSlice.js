@@ -7,8 +7,8 @@ const userSlice = createSlice({
       state.value.push(action.payload);
     },
     deleteUser: (state, action) => {
-      // state.splice(action.payload, 1);
- state.value=state.value.filter((index)=>index!==action.payload)
+      state.value.splice(action.payload, 1);
+//  state.value=state.value.filter((index)=>index!==action.payload)
 }
   } 
 });
